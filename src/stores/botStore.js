@@ -39,7 +39,7 @@ const _states = [
         text: "This air conditioning could save you $180 per year and pays itself in 3 years. Would you like to try it?"
     },
     {
-        text: "Great. You will be contacted by one of our employees so you can agree on date."
+        text: "Great. You will be contacted by one of our employees so you can agree on the date."
     }
 ]
 
