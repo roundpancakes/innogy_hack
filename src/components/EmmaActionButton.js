@@ -35,10 +35,10 @@ export default class EmmaActionButton extends Component {
                         pointerEvents: 'all',
                     }}
                 >
-                    <div className='br-pill'
+                    <div className='br-pill pulsate'
                         style={{
-                            width: this.state.percent * 100,
-                            height: this.state.percent * 100,
+                            width: 100,
+                            height: 100,
                             backgroundColor: '#D7FFF1',
                             transition: 'width 1s ease, height 1s ease, opacity 1s ease',
                             opacity: 0.3,

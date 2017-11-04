@@ -23,8 +23,12 @@
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .addMessage {
@@ -35,7 +39,7 @@
   from {
     max-width: 0px;
     opacity: 0;
-  } 
+  }
   to {
     max-width: 100px;
     opacity: 1;
@@ -66,4 +70,22 @@
 
 .slider-decorator-1 {
   display: none;
+}
+
+.pulsate {
+  animation: pulseLoop .5s infinite;
+}
+
+@keyframes pulseLoop {
+  from {
+    transform: scale(0.4, 0.4);
+  }
+
+  50% {
+    transform: scale(0.7, 0.7);
+  }
+
+  to {
+    transform: scale(0.4, 0.4);
+  }
 }
