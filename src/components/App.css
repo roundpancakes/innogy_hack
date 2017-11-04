@@ -26,3 +26,18 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+.addMessage {
+  animation: newMessage 1s ease forwards;
+}
+
+@keyframes newMessage {
+  from {
+    max-width: 0px;
+    opacity: 0;
+  } 
+  to {
+    max-width: 100px;
+    opacity: 1;
+  }
+}
