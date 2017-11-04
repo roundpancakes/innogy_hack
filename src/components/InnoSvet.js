@@ -62,7 +62,6 @@ export default class InnoSvet extends Component {
             <i className="material-icons absolute right-0 mr3">cloud_upload</i>
           </div>
         </div>
-        <EmmaActionButton />
       </div>
     )
   }
