@@ -11,7 +11,7 @@ const _states = [
     },
     {
         intent: Intent.GREETING,
-        text: "Hi, I am Ema and I found how you can save more money. Would you like to know more?"
+        text: "Hi, I am Emma and I found how you can save more money. Would you like to know more?"
     },
     {
         intent: Intent.PROMOTION,
@@ -74,7 +74,7 @@ AppDispatcher.register(function (action) {
         case BotConstants.NEXT_STATE:
             newIndex = BotStore.findNewState(action.payload)
             BotStore.setStateIndex(newIndex)
-            BotStore.emitChange()
+            setTimeout(() => BotStore.emitChange(), Math.floor(Math.random() * 400) + 300)
             break
         case BotConstants.PREV_STATE:
             newIndex = _currentStateIndex - 1;

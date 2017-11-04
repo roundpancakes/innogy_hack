@@ -37,10 +37,12 @@ export default class Emma extends Component {
 
   handleStoreChange = () => {
     const newMessages = this.state.messages
-    const newMessage = botStore.getState().text
+    const newMessage = { content: botStore.getState().text }
     newMessages.push(newMessage)
-    this.setState(newMessages)
-    this.say(newMessage)
+    this.setState({
+      messages: newMessages
+    })
+    this.say(newMessage.content)
   }
 
   render() {
@@ -54,7 +56,7 @@ export default class Emma extends Component {
       >
         <div className="flex-auto mt4 ph2 fw1 f3" style={{textShadow: '0 0 10px black', color: 'rgba(255, 255, 255, 0.9)'}}>
           {this.state.messages.map((message, index) => (
-            <div key={index} className={`mv2 ${message.from === 'me' ? 'tr' : 'tl'}`}>
+            <div key={index} className={`mv4 ${message.from === 'me' ? 'tr' : 'tl'}`}>
               {message.content}
             </div>
           ))}
