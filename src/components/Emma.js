@@ -5,51 +5,7 @@ import botStore from "../stores/botStore";
 import { nextBotState } from "../actions/botAction";
 import "./App.css";
 
-let voice;
-
-window.speechSynthesis.onvoiceschanged = function() {
-  voice = window.speechSynthesis.getVoices()[10];
-};
-
 export default class Emma extends Component {
-  constructor() {
-    super();
-    this.state = {
-      messages: [],
-      interim: ""
-    };
-    this.init_speech();
-  }
-
-  componentWillMount() {
-    botStore.addChangeListener(this.handleStoreChange);
-    this.handleStoreChange();
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.isHidden && !nextProps.isHidden) {
-      nextBotState();
-    }
-  }
-
-  componentWillUnmount() {
-    botStore.removeChangeListener(this.handleStoreChange);
-  }
-
-  handleStoreChange = () => {
-    const newMessages = this.state.messages;
-    const nextState = botStore.getState();
-    const newMessage = { content: nextState.text };
-    if (nextState.offers) {
-      newMessage.offers = nextState.offers;
-    }
-    newMessages.push(newMessage);
-    this.setState({
-      messages: newMessages
-    });
-    this.say(newMessage.content);
-  };
-
   render() {
     return (
       <div
@@ -60,13 +16,13 @@ export default class Emma extends Component {
         }}
       >
         <div
-          className="flex-auto pt4 ph2 fw1 f3 overflow-scroll"
+          className="flex-auto pt4 ph2 fw1 f3 overflow-scroll mb4"
           style={{
             textShadow: "0 0 10px black",
             color: "rgba(255, 255, 255, 0.9)"
           }}
         >
-          {this.state.messages.map((message, index) => (
+          {this.props.messages.map((message, index) => (
             <div
               key={index}
               className={`mv4 ${message.from === "me" ? "tr" : "tl"}`}
@@ -82,7 +38,7 @@ export default class Emma extends Component {
             </div>
           ))}
           <div className="tr mv2">
-            {this.state.interim.split(" ").map((value, index) => (
+            {this.props.interim.split(" ").map((value, index) => (
               <div
                 style={{ display: "inline-block" }}
                 key={index}
@@ -96,51 +52,4 @@ export default class Emma extends Component {
       </div>
     );
   }
-  init_speech = () => {
-    this.recognition = new window.webkitSpeechRecognition();
-
-    if (!("webkitSpeechRecognition" in window)) {
-      console.log("Browser not supported");
-    }
-
-    this.recognition.continuous = false;
-    this.recognition.interimResults = true;
-    this.recognition.onstart = () => {};
-
-    this.recognition.onend = result => {
-      const newMessages = this.state.messages;
-      newMessages.push({
-        content: this.state.interim,
-        from: "me"
-      });
-      nextBotState(this.state.interim);
-      this.setState({
-        message: this.state.newMessages,
-        interim: ""
-      });
-    };
-
-    this.recognition.onresult = event => {
-      let interim_transcript = "";
-      for (let i = 0; i < event.results.length; i++) {
-        interim_transcript += cap(event.results[i][0].transcript);
-      }
-      this.setState({
-        interim: interim_transcript
-      });
-    };
-
-    const cap = string => {
-      const s = string.charAt(0).toUpperCase() + string.slice(1);
-      const last = s.charAt(s.length - 1);
-      return last === "?" || last === "." ? s : s + ".";
-    };
-  };
-
-  say = message => {
-    var msg = new SpeechSynthesisUtterance();
-    msg.text = message;
-    msg.voice = voice;
-    window.speechSynthesis.speak(msg);
-  };
 }
