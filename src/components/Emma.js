@@ -93,11 +93,6 @@ export default class Emma extends Component {
             ))}
           </div>
         </div>
-        <div
-          className="bg-green w-100"
-          onClick={() => this.recognition.start()}
-          style={{ minHeight: 80 }}
-        />
       </div>
     );
   }

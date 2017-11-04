@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import phoneBody from '../assets/Body.png'
 import InnoSvet from './InnoSvet'
 import Emma from './Emma'
+import EmmaActionButton from './EmmaActionButton'
 
 export default class Mobile extends Component {
   state = {
@@ -40,6 +41,7 @@ export default class Mobile extends Component {
         >
           <InnoSvet isBlurred={!this.state.emmaIsHidden}/>
           <Emma isHidden={this.state.emmaIsHidden} />
+          <EmmaActionButton />
         </div>
       </div>
     );
