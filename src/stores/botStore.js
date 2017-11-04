@@ -14,7 +14,7 @@ const _states = [
         text: "Hi, I am Emma and I found how you can save more money. Would you like to know more?"
     },
     {
-        text: "I found couple of air conditionings which decrease your energy cost.",
+        text: "These air conditionings will decrease your energy cost. Which one you like?",
         offers: [
             {
                 name: "LG BTU 5000",
@@ -38,10 +38,10 @@ const _states = [
     },
     {
         name: "LG BTU 5000",
-        text: "This air conditioning could save you $140 per year and pays itself in 3 years. Would you like to try it?"
+        text: "This could save you $140 per year and pays itself in 3 years. Would you like to try it?"
     },
     {
-        text: "Great. You will be contacted by one of our employees so you can agree on the date."
+        text: "Great. One of our employees will contact you so you can agree on the date."
     }
 ]
 
@@ -50,7 +50,7 @@ var BotStore = assign({}, BaseStore, {
         if (_isInRepeatState) {
             _isInRepeatState = false;
             return {
-                "text": "I don't understand what you mean. Try to repeat please."
+                "text": "Sorry but I didn't get what you mean. Try to repeat please."
             }
         }
         return _states[_currentStateIndex];
