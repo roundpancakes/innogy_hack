@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import phoneBody from '../assets/Body.png'
+import Chart from './Chart.js'
 
 export default class Mobile extends Component {
   render () {
@@ -22,6 +23,7 @@ export default class Mobile extends Component {
           overflow: 'hidden'
         }}>
           <div className='h-100 w-100 bg-red'>
+          <Chart></Chart>
           </div>
         </div>
       </div>
