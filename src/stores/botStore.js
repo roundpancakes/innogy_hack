@@ -45,8 +45,6 @@ const _states = [
 
 var BotStore = assign({}, BaseStore, {
     getState() {
-        console.log(_states)
-        console.log(_currentStateIndex)
         return _states[_currentStateIndex];
     },
     setStateIndex(index) {

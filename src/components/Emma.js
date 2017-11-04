@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import botStore from '../stores/botStore'
-import {nextBotState} from '../actions/botAction'
-import './App.css'
+import Carousel from "nuka-carousel";
+import Card from "./Card";
+import botStore from "../stores/botStore";
+import { nextBotState } from "../actions/botAction";
+import "./App.css";
 
-let voice
+let voice;
 
 window.speechSynthesis.onvoiceschanged = function() {
   voice = window.speechSynthesis.getVoices()[10];
 };
-
 
 export default class Emma extends Component {
   constructor() {
@@ -21,29 +22,33 @@ export default class Emma extends Component {
   }
 
   componentWillMount() {
-    botStore.addChangeListener(this.handleStoreChange)
-    this.handleStoreChange()
+    botStore.addChangeListener(this.handleStoreChange);
+    this.handleStoreChange();
   }
 
   componentWillReceiveProps(nextProps) {
     if (this.props.isHidden && !nextProps.isHidden) {
-      nextBotState()
+      nextBotState();
     }
   }
 
   componentWillUnmount() {
-    botStore.removeChangeListener(this.handleStoreChange)
+    botStore.removeChangeListener(this.handleStoreChange);
   }
 
   handleStoreChange = () => {
-    const newMessages = this.state.messages
-    const newMessage = { content: botStore.getState().text }
-    newMessages.push(newMessage)
+    const newMessages = this.state.messages;
+    const nextState = botStore.getState();
+    const newMessage = { content: nextState.text };
+    if (nextState.offers) {
+      newMessage.offers = nextState.offers;
+    }
+    newMessages.push(newMessage);
     this.setState({
       messages: newMessages
-    })
-    this.say(newMessage.content)
-  }
+    });
+    this.say(newMessage.content);
+  };
 
   render() {
     return (
@@ -51,19 +56,39 @@ export default class Emma extends Component {
         className="flex h-100 w-100 flex-column absolute bg-black-40"
         style={{
           transition: "all .5s ease",
-          top: this.props.isHidden ? "100%" : "0",
+          top: this.props.isHidden ? "100%" : "0"
         }}
       >
-        <div className="flex-auto mt4 ph2 fw1 f3" style={{textShadow: '0 0 10px black', color: 'rgba(255, 255, 255, 0.9)'}}>
+        <div
+          className="flex-auto mt4 ph2 fw1 f3 overflow-scroll"
+          style={{
+            textShadow: "0 0 10px black",
+            color: "rgba(255, 255, 255, 0.9)"
+          }}
+        >
           {this.state.messages.map((message, index) => (
-            <div key={index} className={`mv4 ${message.from === 'me' ? 'tr' : 'tl'}`}>
-              {message.content}
+            <div
+              key={index}
+              className={`mv4 ${message.from === "me" ? "tr" : "tl"}`}
+            >
+              <div>{message.content}</div>
+              {message.offers && (
+                <Carousel>
+                  {message.offers.map((item, index) => (
+                    <Card key={index} item={item} />
+                  ))}
+                </Carousel>
+              )}
             </div>
           ))}
           <div className="tr mv2">
-            {this.state.interim.split(' ').map((value, index) => (
-              <div style={{display: 'inline-block'}} key={index} className="addMessage nowrap overflow-hidden pr1">
-                {value + ' '}
+            {this.state.interim.split(" ").map((value, index) => (
+              <div
+                style={{ display: "inline-block" }}
+                key={index}
+                className="addMessage nowrap overflow-hidden pr1"
+              >
+                {value + " "}
               </div>
             ))}
           </div>
@@ -85,19 +110,19 @@ export default class Emma extends Component {
 
     this.recognition.continuous = false;
     this.recognition.interimResults = true;
-    this.recognition.onstart = () => {}
+    this.recognition.onstart = () => {};
 
-    this.recognition.onend = (result) => {
-      const newMessages = this.state.messages
+    this.recognition.onend = result => {
+      const newMessages = this.state.messages;
       newMessages.push({
         content: this.state.interim,
-        from: 'me'
-      })
+        from: "me"
+      });
       nextBotState(this.state.interim);
       this.setState({
         message: this.state.newMessages,
         interim: ""
-      })
+      });
     };
 
     this.recognition.onresult = event => {
@@ -117,11 +142,10 @@ export default class Emma extends Component {
     };
   };
 
-  say = (message) => {
-      var msg = new SpeechSynthesisUtterance();
-      msg.text = message
-      msg.voice = voice
-      window.speechSynthesis.speak(msg);
-
-  }
+  say = message => {
+    var msg = new SpeechSynthesisUtterance();
+    msg.text = message;
+    msg.voice = voice;
+    window.speechSynthesis.speak(msg);
+  };
 }

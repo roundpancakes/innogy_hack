@@ -41,3 +41,29 @@
     opacity: 1;
   }
 }
+
+.slider-decorator-2 {
+  position: static !important;
+  display: flex;
+  justify-content: center;
+  transform: translateX(0) !important;
+}
+
+.slider-list {
+  height: 180px !important;
+}
+
+.slider-decorator-2 ul {
+  position: static !important;
+}
+
+.slider-decorator-2 button {
+  color: white !important;
+}
+.slider-decorator-0 {
+  display: none;
+}
+
+.slider-decorator-1 {
+  display: none;
+}
