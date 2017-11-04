@@ -17,24 +17,27 @@ var _states = [
             {
                 "Name": "LG BTU 5000",
                 "Price": "$419",
-                "Savings": "10%"
+                "Savings": "10%",
+                "ImageName": "LG BTU 5000.png"
             },
             {
                 "Name": "Sancor TX",
                 "Price": "$239",
                 "Savings": "5%",
+                "ImageName": "Sancor TX.png"
             },
             {
                 "Name": "Fridgerator I-20",
                 "Price": "$349",
-                "Saving": "8%"
+                "Saving": "8%",
+                "ImageName": "Fridgerator I-20.png"
             },
         ]
     },
     {
         "Intent": Intent.PRODUCT_DETAIL,
         "Name": "LG BTU 5000",
-        "Text": "This air conditioning could save you $180 per year and pays itself in 3 years"
+        "Text": "This air conditioning could save you $180 per year and pays itself in 3 years."
     }
 ]
 
