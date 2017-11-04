@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Line, LineChart, ResponsiveContainer, XAxis, CartesianGrid, ReferenceLine, YAxis} from 'recharts'
+import {Area, Line, LineChart, ResponsiveContainer, XAxis, CartesianGrid, ReferenceLine, YAxis} from 'recharts'
 
 const data = [
   {name: '1', uv: 3000, pv: 3000},
@@ -22,8 +22,8 @@ export default class Chart extends Component {
           <span className="b purple ma1">-</span><span className="f7">Aktuální období (4.5.2017 - 3.11.2018)</span>
           <ResponsiveContainer width={"100%"} height={200}>
         <LineChart data={data}>
-            <Line animationEasing="ease-out" type="monotone" dataKey="uv" stroke="#8884d8" dot={false}/>
-            <Line animationEasing="ease-out" type="monotone" dataKey="pv" stroke="#000" dot={false}/>
+            <Line animationEasing="ease-out" type="monotone" dataKey="uv" stroke="#8884d8" strokeWidth={4} dot={false}/>
+            <Line animationEasing="ease-out" type="monotone" dataKey="pv" stroke="#000" strokeWidth={4} dot={false}/>
             <XAxis dataKey="name" />
             <YAxis hide={true} domain={[1500, 'dataMax + 500']}/>
             <CartesianGrid vertical={false}/>
