@@ -4,6 +4,8 @@ import BotConstants from '../constants/botConstants'
 import assign from 'object-assign'
 
 var _currentStateIndex = 0
+var _isInRepeatState = false;
+
 const _states = [
     {
         text: ""
@@ -45,6 +47,12 @@ const _states = [
 
 var BotStore = assign({}, BaseStore, {
     getState() {
+        if (_isInRepeatState) {
+            _isInRepeatState = false;
+            return {
+                "text": "I don't understand what you mean. Try to repeat please."
+            }
+        }
         return _states[_currentStateIndex];
     },
     setStateIndex(index) {
@@ -61,7 +69,7 @@ var BotStore = assign({}, BaseStore, {
             return newIndex;
         }
 
-        text = text.toLowerCase().replace(/\./g,' ').split(' ');
+        text = text.toLowerCase().replace(/\./g, ' ').split(' ');
         console.log(text);
 
         switch (_currentStateIndex) {
@@ -69,16 +77,22 @@ var BotStore = assign({}, BaseStore, {
                 newIndex++;
                 break
             case 1:
-                if (text.some(x => ["yes", "course", "sure", "yeah"].indexOf(x) >= 0)) {
+                if (text.some(x => ["yes", "course", "sure", "yeah", "absolutely"].indexOf(x) >= 0)) {
                     newIndex++;
+                }
+                else {
+                    _isInRepeatState = true;
                 }
                 break
             case 2:
                 newIndex++;
                 break
             case 3:
-                if (text.some(x => ["yes", "course", "sure", "yeah"].indexOf(x) >= 0)) {
+                if (text.some(x => ["yes", "course", "sure", "yeah", "absolutely"].indexOf(x) >= 0)) {
                     newIndex++;
+                }
+                else {
+                    _isInRepeatState = true;
                 }
                 break
             case 4:
@@ -91,8 +105,6 @@ var BotStore = assign({}, BaseStore, {
         return newIndex
     }
 });
-
-
 
 AppDispatcher.register(function (action) {
     let newIndex
