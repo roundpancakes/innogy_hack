@@ -16,7 +16,7 @@ export default class EmmaActionButton extends Component {
     render() {
         return (
             <div
-                className={`fixed bottom-0 left-0 right-0 flex w-100 flex-column items-center justify-center`}
+                className={`absolute bottom-0 left-0 right-0 flex w-100 flex-column items-center justify-center`}
                 style={{
                     transition: 'height 0.5s ease',
                     height: 200,
