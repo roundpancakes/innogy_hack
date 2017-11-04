@@ -5,24 +5,24 @@ import assign from 'object-assign'
 
 var _items = [
     {
-        "Name": "FH 554",
-        "Path": "./images/dashboard/FH 554.png",
-        "Engagement": "20%"
+        "name": "FH 554",
+        "path": "./images/dashboard/FH 554.png",
+        "engagement": "20%"
     },
     {
-        "Name": "Frezhster 6X",
-        "Path": "./images/dashboard/Frezhster 6X.png",
-        "Engagement": "30%"
+        "name": "Frezhster 6X",
+        "path": "./images/dashboard/Frezhster 6X.png",
+        "engagement": "30%"
     },
     {
-        "Name": "HVAC",
-        "Path": "./images/dashboard/HVAC.png",
-        "Engagement": "25%"
+        "name": "HVAC",
+        "path": "./images/dashboard/HVAC.png",
+        "engagement": "25%"
     },
     {
-        "Name": "LG BTU 5000",
-        "Path": "./images/dashboard/LG BTU 5000.png",
-        "Engagement": "39%"
+        "name": "LG BTU 5000",
+        "path": "./images/dashboard/LG BTU 5000.png",
+        "engagement": "39%"
     }
 ]
 
