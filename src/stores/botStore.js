@@ -8,7 +8,7 @@ var _currentStateIndex = 0
 var _states = [
     {
         "Intent": Intent.GREETING,
-        "Text": "Hello"
+        "Text": "Hi, I am Ema and I found how you can save more money. Would you like to know more?"
     },
     {
         "Intent": Intent.OVERVIEW,
@@ -16,7 +16,7 @@ var _states = [
     },
     {
         "Intent": Intent.PROMOTION,
-        "Text": "These appliances could help you:"
+        "Text": "I found couple of air conditionings which can decrease your energy cost."
     }
 ]
 
@@ -37,13 +37,17 @@ AppDispatcher.register(function (action) {
         case BotConstants.NEXT_STATE:
             var newIndex = _currentStateIndex + 1;
             if (newIndex >= _states.length) newIndex = _states.length - 1;
-            CounterStore.setStateIndex(newIndex)
+            CounterStore.setStateIndex(newIndexÍ)
             CounterStore.emitChange()
             break
         case BotConstants.PREV_STATE:
             var newIndex = _currentStateIndex - 1;
             if (newIndex < 0) newIndex = 0;
             CounterStore.setStateIndex(newIndex)
+            CounterStore.emitChange()
+            break
+        case BotConstants.RESET_BOT:
+            CounterStore.setStateIndex(0)
             CounterStore.emitChange()
             break
         default:

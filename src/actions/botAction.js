@@ -4,6 +4,7 @@ import BotConstants from "../constants/botConstants";
 export var nextBotState = function (results) {
     AppDispatcher.dispatch({
         actionType: BotConstants.NEXT_STATE,
+        payload: results
     })
 }
 
