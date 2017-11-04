@@ -10,30 +10,6 @@ const _states = [
         text: ""
     },
     {
-        intent: Intent.PROMOTION,
-        text: "a",
-        offers: [
-            {
-                name: "LG BTU 5000",
-                price: "$419",
-                savings: "10%",
-                path: "../images/LG BTU 5000.png"
-            },
-            {
-                name: "Sancor TX",
-                price: "$239",
-                savings: "5%",
-                path: "../images/Sancor TX.png"
-            },
-            {
-                name: "Fridgerator I-20",
-                price: "$349",
-                savings: "8%",
-                path: "../images/Fridgerator I-20.png"
-            },
-        ]
-    },
-    {
         intent: Intent.GREETING,
         text: "Hi, I am Emma and I found how you can save more money. Would you like to know more?"
     },
