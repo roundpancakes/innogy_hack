@@ -12,7 +12,7 @@ export default class Mobile extends Component {
     return (
       <div
         className="flex items-center justify-center vh-100"
-        style={{ background: "url('https://i.imgur.com/AMf9X7E.jpg')" }}
+        style={{ background: "url('https://i0.wp.com/cuttriss.co.nz/wp-content/uploads/2016/11/green-triangle-3.png')" }}
         onClick={() => this.setState({emmaIsHidden: false})}
       >
         <div
