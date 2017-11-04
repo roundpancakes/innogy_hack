@@ -29,7 +29,7 @@ const _states = [
             {
                 name: "Fridgerator I-20",
                 price: "$349",
-                saving: "8%",
+                savings: "8%",
                 path: "./images/Fridgerator I-20.png"
             },
         ]
