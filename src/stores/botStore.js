@@ -11,12 +11,30 @@ var _states = [
         "Text": "Hi, I am Ema and I found how you can save more money. Would you like to know more?"
     },
     {
-        "Intent": Intent.OVERVIEW,
-        "Text": "Here is how your home is doing:"
+        "Intent": Intent.PROMOTION,
+        "Text": "I found couple of air conditionings which can decrease your energy cost.",
+        "Offers": [
+            {
+                "Name": "LG BTU 5000",
+                "Price": "$419",
+                "Savings": "10%"
+            },
+            {
+                "Name": "Sancor TX",
+                "Price": "$239",
+                "Savings": "5%",
+            },
+            {
+                "Name": "Fridgerator I-20",
+                "Price": "$349",
+                "Saving": "8%"
+            },
+        ]
     },
     {
-        "Intent": Intent.PROMOTION,
-        "Text": "I found couple of air conditionings which can decrease your energy cost."
+        "Intent": Intent.PRODUCT_DETAIL,
+        "Name": "LG BTU 5000",
+        "Text": "This air conditioning could save you $180 per year and pays itself in 3 years"
     }
 ]
 
@@ -32,11 +50,17 @@ var BotStore = assign({}, BaseStore, {
     }
 });
 
+findNewState = (text) => {
+    var newIndex = _currentStateIndex;
+    // TODO: Possibly include LUIS logic here
+    newIndex += 1;
+    if (newIndex > _states.length) newIndex = _states.length - 1;
+}
+
 AppDispatcher.register(function (action) {
     switch (action.actionType) {
         case BotConstants.NEXT_STATE:
-            var newIndex = _currentStateIndex + 1;
-            if (newIndex >= _states.length) newIndex = _states.length - 1;
+            var newIndex = findNewState(action.payload.text)
             CounterStore.setStateIndex(newIndexÍ)
             CounterStore.emitChange()
             break
