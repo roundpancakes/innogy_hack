@@ -12,7 +12,7 @@ var _states = [
     },
     {
         "Intent": Intent.PROMOTION,
-        "Text": "I found couple of air conditionings which can decrease your energy cost.",
+        "Text": "I found couple of air conditionings which decrease your energy cost.",
         "Offers": [
             {
                 "Name": "LG BTU 5000",
@@ -50,32 +50,33 @@ var BotStore = assign({}, BaseStore, {
     },
     getStateIndex() {
         return _currentStateIndex
+    },
+    findNewState(text) {
+        var newIndex = _currentStateIndex;
+        // TODO: Possibly include LUIS logic here
+        newIndex += 1;
+        if (newIndex > _states.length) newIndex = _states.length - 1;
     }
 });
 
-findNewState = (text) => {
-    var newIndex = _currentStateIndex;
-    // TODO: Possibly include LUIS logic here
-    newIndex += 1;
-    if (newIndex > _states.length) newIndex = _states.length - 1;
-}
+
 
 AppDispatcher.register(function (action) {
     switch (action.actionType) {
         case BotConstants.NEXT_STATE:
             var newIndex = findNewState(action.payload.text)
-            CounterStore.setStateIndex(newIndexÍ)
-            CounterStore.emitChange()
+            BotStore.setStateIndex(newIndexÍ)
+            BotStore.emitChange()
             break
         case BotConstants.PREV_STATE:
             var newIndex = _currentStateIndex - 1;
             if (newIndex < 0) newIndex = 0;
-            CounterStore.setStateIndex(newIndex)
-            CounterStore.emitChange()
+            BotStore.setStateIndex(newIndex)
+            BotStore.emitChange()
             break
         case BotConstants.RESET_BOT:
-            CounterStore.setStateIndex(0)
-            CounterStore.emitChange()
+            BotStore.setStateIndex(0)
+            BotStore.emitChange()
             break
         default:
         // no op
