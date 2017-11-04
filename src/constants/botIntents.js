@@ -1,0 +1,5 @@
+export default {
+    GREETING: "GREETING",
+    OVERVIEW: "OVERVIEW",
+    PROMOTION: "PROMOTION"
+}
