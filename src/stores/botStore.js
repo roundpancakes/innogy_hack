@@ -5,44 +5,49 @@ import Intent from '../constants/botIntents'
 import assign from 'object-assign'
 
 var _currentStateIndex = 0
-var _states = [
+const _states = [
     {
-        "Intent": Intent.GREETING,
-        "Text": "Hi, I am Ema and I found how you can save more money. Would you like to know more?"
+        text: ""
     },
     {
-        "Intent": Intent.PROMOTION,
-        "Text": "I found couple of air conditionings which decrease your energy cost.",
-        "Offers": [
+        intent: Intent.GREETING,
+        text: "Hi, I am Ema and I found how you can save more money. Would you like to know more?"
+    },
+    {
+        intent: Intent.PROMOTION,
+        text: "I found couple of air conditionings which decrease your energy cost.",
+        offers: [
             {
-                "Name": "LG BTU 5000",
-                "Price": "$419",
-                "Savings": "10%",
-                "Path": "./images/LG BTU 5000.png"
+                name: "LG BTU 5000",
+                price: "$419",
+                savings: "10%",
+                path: "./images/LG BTU 5000.png"
             },
             {
-                "Name": "Sancor TX",
-                "Price": "$239",
-                "Savings": "5%",
-                "Path": "./images/Sancor TX.png"
+                name: "Sancor TX",
+                price: "$239",
+                savings: "5%",
+                path: "./images/Sancor TX.png"
             },
             {
-                "Name": "Fridgerator I-20",
-                "Price": "$349",
-                "Saving": "8%",
-                "Path": "./images/Fridgerator I-20.png"
+                name: "Fridgerator I-20",
+                price: "$349",
+                saving: "8%",
+                path: "./images/Fridgerator I-20.png"
             },
         ]
     },
     {
-        "Intent": Intent.PRODUCT_DETAIL,
-        "Name": "LG BTU 5000",
-        "Text": "This air conditioning could save you $180 per year and pays itself in 3 years."
+        intent: Intent.PRODUCT_DETAIL,
+        name: "LG BTU 5000",
+        text: "This air conditioning could save you $180 per year and pays itself in 3 years."
     }
 ]
 
 var BotStore = assign({}, BaseStore, {
     getState() {
+        console.log(_states)
+        console.log(_currentStateIndex)
         return _states[_currentStateIndex];
     },
     setStateIndex(index) {
@@ -52,24 +57,27 @@ var BotStore = assign({}, BaseStore, {
         return _currentStateIndex
     },
     findNewState(text) {
-        var newIndex = _currentStateIndex;
         // TODO: Possibly include LUIS logic here
-        newIndex += 1;
-        if (newIndex > _states.length) newIndex = _states.length - 1;
+        var newIndex = _currentStateIndex + 1;
+        if (newIndex >= _states.length) {
+            newIndex = _states.length - 1;
+        }
+        return newIndex
     }
 });
 
 
 
 AppDispatcher.register(function (action) {
+    let newIndex
     switch (action.actionType) {
         case BotConstants.NEXT_STATE:
-            var newIndex = findNewState(action.payload.text)
-            BotStore.setStateIndex(newIndexÍ)
+            newIndex = BotStore.findNewState(action.payload)
+            BotStore.setStateIndex(newIndex)
             BotStore.emitChange()
             break
         case BotConstants.PREV_STATE:
-            var newIndex = _currentStateIndex - 1;
+            newIndex = _currentStateIndex - 1;
             if (newIndex < 0) newIndex = 0;
             BotStore.setStateIndex(newIndex)
             BotStore.emitChange()

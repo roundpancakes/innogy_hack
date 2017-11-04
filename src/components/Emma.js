@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import botStore from '../stores/botStore'
+import {nextBotState} from '../actions/botAction'
 import './App.css'
 
 let voice
@@ -17,6 +19,30 @@ export default class Emma extends Component {
     };
     this.init_speech();
   }
+
+  componentWillMount() {
+    botStore.addChangeListener(this.handleStoreChange)
+    this.handleStoreChange()
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.isHidden && !nextProps.isHidden) {
+      nextBotState()
+    }
+  }
+
+  componentWillUnmount() {
+    botStore.removeChangeListener(this.handleStoreChange)
+  }
+
+  handleStoreChange = () => {
+    const newMessages = this.state.messages
+    const newMessage = botStore.getState().text
+    newMessages.push(newMessage)
+    this.setState(newMessages)
+    this.say(newMessage)
+  }
+
   render() {
     return (
       <div
@@ -65,6 +91,7 @@ export default class Emma extends Component {
         content: this.state.interim,
         from: 'me'
       })
+      nextBotState(this.state.interim);
       this.setState({
         message: this.state.newMessages,
         interim: ""
