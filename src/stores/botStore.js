@@ -17,26 +17,26 @@ const _states = [
             {
                 name: "LG BTU 5000",
                 price: "$419",
-                savings: "10%",
+                savings: "8%",
                 path: "./images/LG BTU 5000.png"
             },
             {
                 name: "Sancor TX",
                 price: "$239",
-                savings: "5%",
+                savings: "3%",
                 path: "./images/Sancor TX.png"
             },
             {
                 name: "Fridgerator I-20",
                 price: "$349",
-                savings: "8%",
+                savings: "5%",
                 path: "./images/Fridgerator I-20.png"
             },
         ]
     },
     {
         name: "LG BTU 5000",
-        text: "This air conditioning could save you $180 per year and pays itself in 3 years. Would you like to try it?"
+        text: "This air conditioning could save you $140 per year and pays itself in 3 years. Would you like to try it?"
     },
     {
         text: "Great. You will be contacted by one of our employees so you can agree on the date."
