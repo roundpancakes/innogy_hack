@@ -6,7 +6,7 @@ import './App.css'
 let voice
 
 window.speechSynthesis.onvoiceschanged = function() {
-  voice = window.speechSynthesis.getVoices()[49];
+  voice = window.speechSynthesis.getVoices()[10];
 };
 
 
