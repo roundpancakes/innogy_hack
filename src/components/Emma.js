@@ -60,7 +60,7 @@ export default class Emma extends Component {
         }}
       >
         <div
-          className="flex-auto mt4 ph2 fw1 f3 overflow-scroll"
+          className="flex-auto pt4 ph2 fw1 f3 overflow-scroll"
           style={{
             textShadow: "0 0 10px black",
             color: "rgba(255, 255, 255, 0.9)"
