@@ -150,7 +150,7 @@ export default class Mobile extends Component {
     const cap = string => {
       const s = string.charAt(0).toUpperCase() + string.slice(1);
       const last = s.charAt(s.length - 1);
-      return last === "?" || last === "." ? s : s + ".";
+      return last === "?" || last === "." ? s : s;
     };
   };
 
@@ -158,6 +158,7 @@ export default class Mobile extends Component {
     var msg = new SpeechSynthesisUtterance();
     msg.text = message;
     msg.voice = voice;
+    msg.rate = .8
     window.speechSynthesis.speak(msg);
   };
 }

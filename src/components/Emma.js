@@ -3,20 +3,26 @@ import Carousel from "nuka-carousel";
 import Card from "./Card";
 import botStore from "../stores/botStore";
 import { nextBotState } from "../actions/botAction";
+import ReactDOM from 'react-dom'
 import "./App.css";
 
 export default class Emma extends Component {
+  componentDidUpdate = () => {
+    const node = ReactDOM.findDOMNode(this.bottomComponent);
+    node.scrollIntoView({ behavior: 'smooth' })
+  }
+
   render() {
     return (
       <div
-        className="flex h-100 w-100 flex-column absolute bg-black-40"
+        className="flex h-100 w-100 flex-column absolute bg-black-40 top-0"
         style={{
           transition: "all .5s ease",
-          top: this.props.isHidden ? "100%" : "0"
+          opacity: this.props.isHidden ? "0" : "1"
         }}
       >
         <div
-          className="flex-auto pt4 ph2 fw1 f3 overflow-scroll mb4"
+          className="flex-auto pt4 ph2 fw1 f3 overflow-scroll pb4"
           style={{
             textShadow: "0 0 10px black",
             color: "rgba(255, 255, 255, 0.9)"
@@ -37,7 +43,7 @@ export default class Emma extends Component {
               )}
             </div>
           ))}
-          <div className="tr mv2">
+          <div className="tr mt2 mb2">
             {this.props.interim.split(" ").map((value, index) => (
               <div
                 style={{ display: "inline-block" }}
@@ -48,6 +54,7 @@ export default class Emma extends Component {
               </div>
             ))}
           </div>
+          <div className="tr mt2 mb5" ref={(dummy) => this.bottomComponent = dummy} />
         </div>
       </div>
     );
