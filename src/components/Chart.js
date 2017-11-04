@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Line, LineChart} from 'recharts'
+import {Line, LineChart, ResponsiveContainer} from 'recharts'
 
 const data = [
   {name: '11', uv: 3000, pv: 2400, amt: 3000},
@@ -13,9 +13,11 @@ const data = [
 export default class Chart extends Component {
     render () {
       return (
-        <LineChart width={400} height={400} data={data}>
+          <ResponsiveContainer width={"100%"} height={80}>
+        <LineChart data={data}>
             <Line type="monotone" dataKey="uv" stroke="#8884d8" />
         </LineChart>
+        </ResponsiveContainer>
       )
     }
   }
