@@ -9,12 +9,7 @@ const _states = [
         text: ""
     },
     {
-<<<<<<< HEAD
-        text: "Hi, I am Ema and I found how you can save more money. Would you like to know more?"
-=======
-        intent: Intent.GREETING,
         text: "Hi, I am Emma and I found how you can save more money. Would you like to know more?"
->>>>>>> a704795eb38172481a7250fdbc0a4e6bc10c9517
     },
     {
         text: "I found couple of air conditionings which decrease your energy cost.",
@@ -62,30 +57,36 @@ var BotStore = assign({}, BaseStore, {
     },
     findNewState(text) {
         var newIndex = _currentStateIndex;
-        
-        if (!text || text.length <= 0) return newIndex;
 
-        text = text.toLowerCase().split(' ');
+        if (!text) {
+            newIndex++;
+            return newIndex;
+        }
+
+        text = text.toLowerCase().replace(/\./g,' ').split(' ');
+        console.log(text);
 
         switch (_currentStateIndex) {
+            case 0:
+                newIndex++;
+                break
             case 1:
                 if (text.some(x => ["yes", "course", "sure", "yeah"].indexOf(x) >= 0)) {
-                    newIndex += 1;
+                    newIndex++;
                 }
                 break
             case 2:
+                newIndex++;
                 break
             case 3:
                 if (text.some(x => ["yes", "course", "sure", "yeah"].indexOf(x) >= 0)) {
-                    newIndex += 1;
+                    newIndex++;
                 }
                 break
             case 4:
                 break
         }
 
-
-        // TODO: Possibly include LUIS logic here
         if (newIndex >= _states.length) {
             newIndex = _states.length - 1;
         }
