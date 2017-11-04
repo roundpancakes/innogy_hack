@@ -4,7 +4,10 @@ import Chart from './Chart'
 export default class InnoSvet extends Component {
   render() {
     return (
-        <div className='flex h-100 w-100 bg-white flex-column'>
+        <div className='flex h-100 w-100 bg-white flex-column' style={{
+          transition: 'all .5s ease',
+          filter: this.props.isBlurred ? 'blur(50px)' : ''
+        }}>
           <div className='bg-dark-gray w-100 flex justify-between items-center pl4 pr3 f7 white' style={{minHeight: 24}}>
             <div>
               9:41
