@@ -9,7 +9,12 @@ const _states = [
         text: ""
     },
     {
+<<<<<<< HEAD
         text: "Hi, I am Ema and I found how you can save more money. Would you like to know more?"
+=======
+        intent: Intent.GREETING,
+        text: "Hi, I am Emma and I found how you can save more money. Would you like to know more?"
+>>>>>>> a704795eb38172481a7250fdbc0a4e6bc10c9517
     },
     {
         text: "I found couple of air conditionings which decrease your energy cost.",
@@ -96,7 +101,7 @@ AppDispatcher.register(function (action) {
         case BotConstants.NEXT_STATE:
             newIndex = BotStore.findNewState(action.payload)
             BotStore.setStateIndex(newIndex)
-            BotStore.emitChange()
+            setTimeout(() => BotStore.emitChange(), Math.floor(Math.random() * 400) + 300)
             break
         case BotConstants.PREV_STATE:
             newIndex = _currentStateIndex - 1;
