@@ -18,7 +18,8 @@ export default class Icon extends React.Component {
         delete restProps.color
         delete restProps.src
         delete restProps.className
-
+ 
+        
         return (
             <i
                 {...restProps}
