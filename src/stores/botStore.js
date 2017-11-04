@@ -1,7 +1,6 @@
 import AppDispatcher from '../dispatchers/appDispatcher'
 import BaseStore from './baseStore'
 import BotConstants from '../constants/botConstants'
-import Intent from '../constants/botIntents'
 import assign from 'object-assign'
 
 var _currentStateIndex = 0
@@ -10,11 +9,9 @@ const _states = [
         text: ""
     },
     {
-        intent: Intent.GREETING,
         text: "Hi, I am Ema and I found how you can save more money. Would you like to know more?"
     },
     {
-        intent: Intent.PROMOTION,
         text: "I found couple of air conditionings which decrease your energy cost.",
         offers: [
             {
@@ -38,9 +35,11 @@ const _states = [
         ]
     },
     {
-        intent: Intent.PRODUCT_DETAIL,
         name: "LG BTU 5000",
-        text: "This air conditioning could save you $180 per year and pays itself in 3 years."
+        text: "This air conditioning could save you $180 per year and pays itself in 3 years. Would you like to try it?"
+    },
+    {
+        text: "Great. You will be contacted by one of our employees so you can agree on date."
     }
 ]
 
@@ -57,8 +56,31 @@ var BotStore = assign({}, BaseStore, {
         return _currentStateIndex
     },
     findNewState(text) {
+        var newIndex = _currentStateIndex;
+        
+        if (!text || text.length <= 0) return newIndex;
+
+        text = text.toLowerCase().split(' ');
+
+        switch (_currentStateIndex) {
+            case 1:
+                if (text.some(x => ["yes", "course", "sure", "yeah"].indexOf(x) >= 0)) {
+                    newIndex += 1;
+                }
+                break
+            case 2:
+                break
+            case 3:
+                if (text.some(x => ["yes", "course", "sure", "yeah"].indexOf(x) >= 0)) {
+                    newIndex += 1;
+                }
+                break
+            case 4:
+                break
+        }
+
+
         // TODO: Possibly include LUIS logic here
-        var newIndex = _currentStateIndex + 1;
         if (newIndex >= _states.length) {
             newIndex = _states.length - 1;
         }
