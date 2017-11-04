@@ -92,7 +92,7 @@ export default class InnoSvet extends Component {
             >
             </div>
             <div className='absolute left-0 right-0 top-0 bottom-0 flex items-center justify-center'>
-            <i class="material-icons">mic</i>
+            <i className="material-icons">mic</i>
             </div>
           </div>
         </div>
