@@ -38,7 +38,13 @@ const _states = [
     },
     {
         name: "LG BTU 5000",
-        text: "This saves you $140 per year and pays itself back in 3 years. What do you think?"
+        text: "This saves you $140 per year and pays itself back in 3 years. What do you think?",
+        offers: [{
+            name: "",
+            price: "",
+            savings: "",
+            path: "./images/Chart savings.png"
+        }]
     },
     {
         text: "Great. One of our employees will contact you so you can agree on the date."

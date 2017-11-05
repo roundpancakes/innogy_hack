@@ -55,6 +55,10 @@ export default class InnoSvet extends Component {
               </div>
             <i className="material-icons absolute right-0 mr3">keyboard_arrow_right</i>
           </div>
+
+          {this.props.showChart && (
+            <img className="w-100" src="./images/image.png"></img>
+          )}
           <div className="overflow-hidden relative bg-dark-gray br-pill flex justify-center items-center mt2 pa2 white">
             <div>
               Nahrát nový stav
