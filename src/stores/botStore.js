@@ -11,10 +11,10 @@ const _states = [
         text: ""
     },
     {
-        text: "Hi, I am Emma and I found how you can save more money. Would you like to know more?"
+        text: "Hi, I am Emma! I've got some saving tips for you! Are you interested?"
     },
     {
-        text: "These air conditionings will decrease your energy cost. Which one you like?",
+        text: "Your AC is performing 13% worse than the average in your area. I've got some alternatives.",
         offers: [
             {
                 name: "LG BTU 5000",
@@ -38,7 +38,7 @@ const _states = [
     },
     {
         name: "LG BTU 5000",
-        text: "This could save you $140 per year and pays itself in 3 years. Would you like to try it?"
+        text: "This saves you $140 per year and pays itself back in 3 years. What do you think?"
     },
     {
         text: "Great. One of our employees will contact you so you can agree on the date."
@@ -50,7 +50,7 @@ var BotStore = assign({}, BaseStore, {
         if (_isInRepeatState) {
             _isInRepeatState = false;
             return {
-                "text": "Sorry but I didn't get what you mean. Try to repeat please."
+                "text": "Sorry! What do you mean?"
             }
         }
         return _states[_currentStateIndex];
@@ -112,7 +112,7 @@ AppDispatcher.register(function (action) {
         case BotConstants.NEXT_STATE:
             newIndex = BotStore.findNewState(action.payload)
             BotStore.setStateIndex(newIndex)
-            setTimeout(() => BotStore.emitChange(), Math.floor(Math.random() * 400) + 300)
+            setTimeout(() => BotStore.emitChange(), Math.floor(Math.random() * 600) + 750)
             break
         case BotConstants.PREV_STATE:
             newIndex = _currentStateIndex - 1;

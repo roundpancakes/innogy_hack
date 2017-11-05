@@ -9,7 +9,7 @@ import { nextBotState } from "../actions/botAction";
 let voice;
 
 window.speechSynthesis.onvoiceschanged = function() {
-  voice = window.speechSynthesis.getVoices()[10];
+  voice = window.speechSynthesis.getVoices()[49];
 };
 
 export default class Mobile extends Component {

@@ -3,16 +3,16 @@ import {Area, Line, LineChart, ResponsiveContainer, XAxis, CartesianGrid, Refere
 
 const data = [
   {name: '1', uv: 3000, pv: 3000},
-  {name: '2', uv: 3000, pv: 3000},
-  {name: '3', uv: 3200, pv: 3200},
-  {name: '4', uv: 3250, pv: 2900},
-  {name: '5', uv: 3280, pv: 2730},
-  {name: '6', uv: 3300, pv: 2400},
-  {name: '7', uv: 3280, pv: 2350},
-  {name: '8', uv: 3450, pv: 2350},
-  {name: '9', uv: 3400, pv: 2200},
-  {name: '10', uv: 3600, pv: 2200},
-  {name: '11', uv: 3500, pv: 2100}
+  {name: '2', uv: 3200, pv: 3200},
+  {name: '3', uv: 3300, pv: 3300},
+  {name: '4', uv: 3450, pv: 2900},
+  {name: '5', uv: 3300, pv: 2730},
+  {name: '6', uv: 3200, pv: 2400},
+  {name: '7', uv: 2900, pv: 2350},
+  {name: '8', uv: 2800, pv: 2350},
+  {name: '9', uv: 2750, pv: 2200},
+  {name: '10', uv: 2900, pv: 2200},
+  {name: '11', uv: 3200, pv: 2350}
 ];
 
 export default class Chart extends Component {
