@@ -14,7 +14,7 @@ export default class InnoSvet extends Component {
             9:41
             </div>
           <div>
-            Innogy
+            Emmagy
             </div>
         </div>
         <div className='flex justify-between items-center bg-dark-gray white ph2' style={{ minHeight: 50 }}>
@@ -55,6 +55,10 @@ export default class InnoSvet extends Component {
               </div>
             <i className="material-icons absolute right-0 mr3">keyboard_arrow_right</i>
           </div>
+
+          {this.props.showChart && (
+            <img className="w-100" src="./images/image.png"></img>
+          )}
           <div className="overflow-hidden relative bg-dark-gray br-pill flex justify-center items-center mt2 pa2 white">
             <div>
               Nahrát nový stav

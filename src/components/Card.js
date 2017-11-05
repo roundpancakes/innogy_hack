@@ -7,34 +7,34 @@ export default class Card extends Component {
         <div
           className="w-100"
           style={{
-            height: 100,
+            height: this.props.item.name ? 100 : 180,
             backgroundImage: `url('${this.props.item.path}')`,
             backgroundSize: "contain",
             backgroundPosition: "center",
-            backgroundRepeat: 'no-repeat'
+            backgroundRepeat: "no-repeat"
           }}
         />
-        <div className="flex items-center justify-center mt1">
-          {this.props.item.name}
-        </div>
-        <div className="w-50">
-        <div className='flex justify-between items-center self-center mt2 w-100'>
-          <div className="f7">
-            Price:
+        {this.props.item.name && (
+          <div className="flex items-center justify-center mt1">
+            {this.props.item.name}
           </div>
-          <div className="f6 b ml3 flex items-center">
-            {this.props.item.price}
+        )}
+        {this.props.item.name && (
+          <div className="w-50">
+            <div className="flex justify-between items-center self-center mt2 w-100">
+              <div className="f7">Price:</div>
+              <div className="f6 b ml3 flex items-center">
+                {this.props.item.price}
+              </div>
+            </div>
+            <div className="flex justify-between items-center self-center mt1 w-100">
+              <div className="f7">Savings:</div>
+              <div className="f6 b ml3 flex items-center">
+                {this.props.item.savings}
+              </div>
+            </div>
           </div>
-        </div>
-        <div className='flex justify-between items-center self-center mt1 w-100'>
-          <div className="f7">
-            Savings:
-          </div>
-          <div className="f6 b ml3 flex items-center">
-            {this.props.item.savings}
-          </div>
-        </div>
-        </div>
+        )}
       </div>
     );
   }

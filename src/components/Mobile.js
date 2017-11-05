@@ -18,7 +18,8 @@ export default class Mobile extends Component {
     this.state = {
       messages: [],
       interim: "",
-      emmaIsHidden: true
+      emmaIsHidden: true,
+      showChart: false
     };
     this.init_speech();
   }
@@ -60,6 +61,7 @@ export default class Mobile extends Component {
           background:
             "url('https://i0.wp.com/cuttriss.co.nz/wp-content/uploads/2016/11/green-triangle-3.png')"
         }}
+        onClick={() => this.setState({showChart: true})}
       >
         <div
           style={{
@@ -84,7 +86,7 @@ export default class Mobile extends Component {
             background: "black"
           }}
         >
-          <InnoSvet isBlurred={!this.state.emmaIsHidden} />
+          <InnoSvet isBlurred={!this.state.emmaIsHidden} showChart={this.state.showChart} />
           <Emma
             isHidden={this.state.emmaIsHidden}
             messages={this.state.messages}
