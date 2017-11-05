@@ -14,7 +14,7 @@ export default class InnoSvet extends Component {
             9:41
             </div>
           <div>
-            Innogy
+            Emmagy
             </div>
         </div>
         <div className='flex justify-between items-center bg-dark-gray white ph2' style={{ minHeight: 50 }}>
